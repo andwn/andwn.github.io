@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+	<title>Rockman & Forte Boss Order Generator</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="icon" type="image/png" href="megaman.png">
+</head>
+<body>
+	<h1>Rockman & Forte Boss Order Generator</h1>
+	<button onclick="generate()">Generate</button><br/>
+	<br/>
+	<img id="1" src="cold.png"/> 
+	<img id="2" src="astro.png"/> 
+	<img id="3" src="ground.png"/> 
+	<img id="4" src="burner.png"/> 
+	<img id="5" src="pirate.png"/> 
+	<img id="6" src="dynamo.png"/> 
+	<img id="7" src="tengu.png"/> 
+	<img id="8" src="magic.png"/>
+	<br/>
+	<script language="javascript" type="text/javascript">
+	if(!String.prototype.format) {
+	  String.prototype.format = function() {
+		var args = arguments;
+		return this.replace(/{(\d+)}/g, function(match, number) { 
+		  return typeof args[number] != 'undefined' ? args[number] : match;
+		});
+	  };
+	}
+	function generate() {
+		var bosses = [ true, true, true, false, false, false, false, false ];
+		var cold = false, astro = false, ground = false;
+		var names = [ "cold", "astro", "ground", "burner", "pirate", "dynamo", "tengu", "magic" ];
+		for(var i = 0; i < 8; i++) {
+			// List of undefeated bosses
+			var accessible = [];
+			for(var x = 0; x < 8; x++) {
+				if(bosses[x]) accessible.push(x);
+			}
+			var nextboss = accessible[Math.floor(Math.random() * accessible.length)];
+			bosses[nextboss] = false; // Don't pick the same boss again
+			// Change the image
+			document.getElementById((i + 1).toString()).src = "{0}.png".format(names[nextboss]);
+			// Cold Man
+			if(nextboss == 0) {
+				bosses[3] = true;
+				if(!astro) bosses[4] = true;
+				cold = true;
+			}
+			// Astro Man
+			if(nextboss == 1) {
+				if(!cold) bosses[4] = true;
+				bosses[5] = true;
+				if(!ground) bosses[6] = true;
+				astro = true;
+			}
+			// Ground Man
+			if (nextboss == 2) {
+				if(!astro) bosses[6] = true;
+				bosses[7] = true;
+				ground = true;
+			}
+		}
+	}
+	</script>
+</body>
+</html>

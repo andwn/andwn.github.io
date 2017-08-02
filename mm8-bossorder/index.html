@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<title>Mega Man 8 Boss Order Generator</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="icon" type="image/png" href="megaman.png">
+</head>
+<body>
+	<h1>Mega Man 8 Boss Order Generator</h1>
+	<button onclick="generate()">Generate</button><br/>
+	<br/>
+	<img id="1" src="1.png"/> <img id="2" src="2.png"/><br/>
+	<img id="3" src="3.png"/> <img id="4" src="4.png"/><br/>
+	<br/>
+	<br/>
+	<img id="5" src="1.png"/> <img id="6" src="2.png"/><br/>
+	<img id="7" src="3.png"/> <img id="8" src="4.png"/><br/>
+	<script language="javascript" type="text/javascript">
+	if (!String.prototype.format) {
+	  String.prototype.format = function() {
+		var args = arguments;
+		return this.replace(/{(\d+)}/g, function(match, number) { 
+		  return typeof args[number] != 'undefined'
+			? args[number]
+			: match
+		  ;
+		});
+	  };
+	}
+	function makeList() {
+		var bag = [ 1, 2, 3, 4, -1 ];
+		var order = [];
+		for(var i = 0; i < 4; i++) {
+			var bagIndex = Math.floor(Math.random() * (4 - i));
+			order[i] = bag[bagIndex];
+			for(var sort = bagIndex; sort <= 4; sort++) {
+				bag[sort] = bag[sort + 1];
+			}
+		}
+		return order;
+	}
+	function generate() {
+		var list1 = makeList();
+		var list2 = makeList();
+		for(var i = 0; i < 4; i++) {
+			document.getElementById((1 + i).toString()).src = 
+				"{0}.png".format(list1[i].toString());
+			document.getElementById((5 + i).toString()).src = 
+				"{0}.png".format(list2[i].toString());
+		}
+	}
+	</script>
+</body>
+</html>
