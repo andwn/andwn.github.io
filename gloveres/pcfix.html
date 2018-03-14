@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Glover PC Fix</title>
+	<link rel="stylesheet" href="//skychase.zone/style.css" type="text/css" media="all">
+</head>
+<body>
+	<p><a href="//skychase.zone/">Home</a></p>
+	<p><a href="http://www.mediafire.com/file/4nf8c3gci5y4ukc/GloverPC_patched_01.zip">Download</a></p>
+	<p>Password is "glover".</p>
+	<p>Info/instructions the readme:<br/><br/>
+Glover PC except runnable on a non-toaster
+------------------------------------------
+
+Should be as easy as opening Glover.exe and you can play the game.
+The key config is set to my own preference since Shift/Alt would conflict with stuff.
+Using keyboard still sucks, mapping a controller to the keys is recommended.
+
+In order to stop the flicker (and run the game in a window) dgVoodoo2 is used. The
+configuration utility is included in case anything needs to be tweaked.
+
+This is working on my Windows 10 x64 PC and has not been tested elsewhere yet. If you
+run into issues bother @donutgrind on Twitter.
+
+
+Changes to Glover EXE
+---------------------
+
+A few function calls and conditional jumps are replaced with NOP/RET instructions to 
+(1) get around the copy protection/CD requirement
+(2) Disable playback of "Smacker" video files (they would cause the game to hang)
+(3) Disable checking the registry for a "whereami" key. Glover would exit if it didn't exist
+
+A flag which generates a log file with some debugging information has been enabled.
+Most of the messages aren't very meaningful but could help in troubleshooting strange
+issues that arise in the future.
+
+A section of the code attempts to enable/disable interrupts (CLI/STI) which is not
+allowed by userland applications in modern Windows/x86 processors (so the game crashes).
+I replaced both with a NOP.
+
+
+Changes to Config EXE
+---------------------
+
+Like the game itself, the config program checks for the "whereami" registry key. The jump
+to the function which does this is replaced with RET. Without this change, the program pops
+up a message "Make sure Glover is properly installed" and exits.
+
+
+FAQ / Known Issues
+------------------
+
+My AV is flagging some DLLs as malicious!
+
+The DirectX wrapper for dgVoodoo2 (http://dege.freeweb.hu/dgVoodoo2/dgVoodoo2.html) uses
+modified versions of the DirectX DLLs to work. Since these are considered Windows system
+files, modified/spoofed versions can be flagged as malicious by some anti malware programs.
+I can tell you it's a false positive, but it's up to you if you want to trust me or Dege.
+
+---
+
+How to L cancel in this version?
+
+Press F12. For whatever reason this key is not configurable.
+
+---
+
+I want to use full screen mode!
+
+Press Alt + Enter to toggle it.
+	</p>
+</body>
+</html>
