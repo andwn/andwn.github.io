@@ -1,0 +1,109 @@
+/* Responsive grid */
+* {
+    box-sizing: border-box;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    /* border: 1px solid red; /* debug */
+    /* For mobile phones: */
+    width: 100%;
+}  
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+/* Global Theme */
+body {
+    background-color: #DEF;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.25;
+    min-width: 360px;
+    max-width: 960px;
+    margin: 0em auto;
+    text-align: justify;
+}
+img { 
+    max-width: 100%;
+    height: auto; 
+}
+
+/* Top Navigation Menu - Put a typical html list in <div class="nav"> */
+.nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    padding: 0;
+    color: #fff;
+    background: #235;
+    text-align: center;
+}
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+}
+.nav li {
+    display: inline-block;
+}
+.nav li a {
+    display: block;
+    min-width: 120px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background: #235;
+    text-decoration: none;
+}
+.nav li:hover a {
+    background: #ABD;
+    transition: 0.25s;
+}
+
+/* Darkened Area at the Bottom - Put stuff in <div class="footer"> */
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    color: #000;
+    background: #CDF;
+    text-align: center;
+}
+
+/* Monospace Code Block - Put code in <script type="text/plain"> */
+script[type="text/plain"] { 
+    display: block;
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #CDF;
+    white-space: pre-wrap;
+}
+
+/* Mouse-Over Spoiler - Put spoiling text/html in <div class="spoiler"> */
+.spoiler {
+    filter: blur(10px);
+    transition: 0.25s filter linear;
+}
+.spoiler:hover, .spoiler:focus {
+	filter: blur(0px);
+}
