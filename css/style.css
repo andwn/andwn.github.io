@@ -32,8 +32,7 @@
 
 /* Global Theme */
 body {
-    background-color: #DEF;
-    color: #000;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 1.25;
     min-width: 360px;
@@ -41,9 +40,18 @@ body {
     margin: 0em auto;
     text-align: justify;
 }
+a {
+    text-decoration: none;
+}
+hr {
+    opacity: 50%;
+}
 img { 
     max-width: 100%;
     height: auto; 
+}
+p {
+    margin: 0.5em auto;
 }
 
 /* Top Navigation Menu - Put a typical html list in <div class="nav"> */
@@ -53,8 +61,6 @@ img {
     top: 0;
     left: 0;
     padding: 0;
-    color: #fff;
-    background: #235;
     text-align: center;
 }
 .nav ul {
@@ -69,25 +75,44 @@ img {
     min-width: 120px;
     height: 40px;
     line-height: 40px;
-    color: #fff;
-    background: #235;
     text-decoration: none;
 }
 .nav li:hover a {
-    background: #ABD;
     transition: 0.25s;
 }
 
 /* Darkened Area at the Bottom - Put stuff in <div class="footer"> */
 .footer {
-    position: absolute;
+    position: relative;
     right: 0;
     bottom: 0;
     left: 0;
     padding: 1rem;
-    color: #000;
-    background: #CDF;
+    padding-top: 0;
     text-align: center;
+}
+
+/* Page divs */
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Blog post stuff */
+.post-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+.post-date {
+    font-size: 14px;
+}
+
+/* Image caption (small text) */
+.img-caption {
+    font-size: 12px;
+}
+.img-caption a {
+    font-size: 12px;
 }
 
 /* Monospace Code Block - Put code in <script type="text/plain"> */
@@ -95,7 +120,6 @@ script[type="text/plain"] {
     display: block;
     font-family: monospace;
     font-size: 14px;
-    background-color: #CDF;
     white-space: pre-wrap;
 }
 
@@ -106,4 +130,38 @@ script[type="text/plain"] {
 }
 .spoiler:hover, .spoiler:focus {
 	filter: blur(0px);
+}
+
+/*
+Colors:
+Blue:   #051B38 #143054 #2B4970 #4C688B #748BA7 #9DC4F6 #EEF7FF
+Orange: #552000 #803D15 #AA6339 #D4916A #FFCAAA
+Yellow: #554300 #806915 #AA9239 #D4BE6A #FFEDAA
+*/
+@media only screen {
+    /* Dark Theme */
+    body            { color: #EEF7FF; background: #051B38; }
+    a, a:link       { color: #D4916A; }
+    a:hover         { color: #803D15; }
+    hr              { background: #EEF7FF; }
+    .nav ul         { color: #EEF7FF; background: #143054; }
+    .nav li a       { color: #EEF7FF; background: #143054; }
+    .nav li:hover a { background: #803D15; }
+    .post-date      { color: #9DC4F6; }
+    .img-caption a  { color: #EEF7FF; }
+    script[type="text/plain"] { background: #143054; }
+    
+    @media (prefers-color-scheme: light) {
+        /* Light Theme */
+        body            { color: #051B38; background: #EEF7FF;}
+        a, a:link       { color: #803D15; }
+        a:hover         { color: #D4916A; }
+        hr              { background: #051B38; }
+        .nav ul         { color: #051B38; background: #9DC4F6; }
+        .nav li a       { color: #051B38; background: #9DC4F6; }
+        .nav li:hover a { background: #D4916A; }
+        .post-date      { color: #143054; }
+        .img-caption a  { color: #051B38; }
+        script[type="text/plain"] { background: #9DC4F6; }
+    }
 }
